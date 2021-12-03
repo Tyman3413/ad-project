@@ -60,7 +60,7 @@ export default {
           drawer: false,
       links: [
       {title:"Login", icon:"mdi-lock", url:"/login"},
-      {title:"Sing Up", icon:"mdi-account-arrow-right-outline", url:"/registration"},
+      {title:"Sign Up", icon:"mdi-account-arrow-right-outline", url:"/registration"},
       {title:"Orders", icon:"mdi-bookmark-multiple-outline", url:"/orders"},
       {title:"New ad", icon:"mdi-note-plus-outline", url:"/new"},
       {title:"My ads", icon:"mdi-view-list-outline", url:"/list"}
