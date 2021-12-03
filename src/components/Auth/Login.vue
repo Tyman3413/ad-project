@@ -12,14 +12,16 @@
                                     prepend-icon="mdi-account" 							
                                     name="email" 
                                     label="Email" 
-                                    type="email">
+                                    type="email"
+                                    v-model="email">
                                 </v-text-field>
-                                    <v-text-field
+                                <v-text-field
                                         prepend-icon="mdi-lock" 
                                         name="password" 
                                         label="Password" 
-                                        type="password">
-                                    </v-text-field>
+                                        type="password"
+                                        v-model="password" >
+                                </v-text-field>
                             </v-form> 
                         </v-card-text>
                             <v-card-actions>
@@ -36,6 +38,8 @@
 export default {
     data () { 
         return {
+            email: "",
+            password: ""
         } 	
     }
 } 
