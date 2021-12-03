@@ -16,9 +16,10 @@
 
       <v-list dense>
         <v-list-item-group color="primary">
-          <v-list-item 
-          v-for="link in links" 
-          :key="link.title"
+          <v-list-item
+            v-for="link in links"
+            :key="link.title"
+            :to="link.url"
           >
             <v-list-item-icon>
               <v-icon>{{ link.icon }}</v-icon>
@@ -35,13 +36,19 @@
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
        <v-btn 
-       v-for="link in links" 
-       :key="link.title" 
-       text><v-icon left>{{ link.icon }}</v-icon>{{ link.title }}</v-btn> 
+        v-for="link in links"
+        :key="link.title"
+        :to="link.url" 
+        text>
+        <v-icon left>
+          {{ link.icon }}
+        </v-icon>{{ link.title }}
+      </v-btn>
+
     </v-toolbar-items>
   </v-app-bar>
   <v-main>
-    <!--<router-view></router-view>--> 
+    <router-view></router-view> 
   </v-main>
   </v-app>
 </template>
