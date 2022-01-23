@@ -8,8 +8,6 @@
 					v-for="ad in promoAds"
 					:key="ad.id"
 					:src="ad.src">
-
-					>
 						<div class="ad-link">
 							<v-btn class="error" :to="'/ad/' + ad.id">
 								{{ ad.title }}
