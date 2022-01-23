@@ -46,7 +46,7 @@ class="elevation-10 mb-5">
     <v-flex xs8 class="pr-3">
         <v-card-text>
           <h2 class="text--primary">{{}}</h2>
-          <p>{{ }}</p>
+          <p>{{}}</p>
         </v-card-text>
         <v-card-actions>
         <v-spacer></v-spacer>
