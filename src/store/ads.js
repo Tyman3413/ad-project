@@ -12,8 +12,8 @@ class Ad {
   }  
 
 export default {
-	state: {
-		ads:[
+  state: {
+    ads:[
                 {
                     title:"First",
                     desc:"First Desc",
@@ -80,19 +80,50 @@ export default {
               commit('setLoading', false)
               throw error
             }
-        }
+        },
+        async fetchAds({commit}) {
+          commit('clearError')
+              commit('setLoading', true)
+             try {
+            //Здесь запрос к базе данных
+                const fbVal = await fb.database().ref('ads').once('value')
+                const ads = fbVal.val()
+                console.log(ads)
+                //val()
+                const resultAds = []
+                Object.keys(ads).forEach(key => {
+                    const ad = ads[key]
+                    resultAds.push(
+                      new Ad(
+                        ad.title,
+                        ad.desc,
+                        ad.ownerId,
+                        ad.src,
+                        ad.promo,
+                        key
+                      )
+                    )
+                  })
+                  commit('loadAds', resultAds)
+             commit('setLoading', false)
+              }  catch (error) {
+              commit('setError', error.message)
+              commit('setLoading', false)
+              throw error
+             }
+          }
     },   
-	getters: {
-		ads(state) {
-			return state.ads
-		},
-		promoAds(state) {
-			return state.ads.filter(ad => {
-				return ad.promo
-			})
-		},
-		myAds(state) {
-			return state.ads
+  getters: {
+    ads(state) {
+      return state.ads
+    },
+    promoAds(state) {
+      return state.ads.filter(ad => {
+        return ad.promo
+      })
+    },
+    myAds(state) {
+      return state.ads
         },
         adById(state) {
             return id => {
