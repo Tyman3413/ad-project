@@ -31,7 +31,8 @@ new Vue({
   fb.analytics()
   fb.auth().onAuthStateChanged(user => {
     if (user) {
-      this.$store.dispatch('autoLoginUser', user)
+      console.log(`Смотрим что мы получили: ${user.uid}`)
+      this.$store.dispatch('autoLoginUser', user.uid)
     }
 
   })
