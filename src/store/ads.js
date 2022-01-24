@@ -1,10 +1,10 @@
 import fb from 'firebase'
 
 class Ad {
-    constructor (title, desc, OwnerId, src = '', promo = false, id = null) {
+    constructor (title, desc, ownerId, src = '', promo = false, id = null) {
       this.title = title
       this.desc = desc
-      this.OwnerId = OwnerId
+      this.ownerId = ownerId
       this.src = src
       this.promo = promo
       this.id = id
@@ -119,7 +119,7 @@ export default {
                       new Ad(
                         ad.title,
                         ad.desc,
-                        ad.OwnerId,
+                        ad.ownerId,
                         ad.src,
                         ad.promo,
                         key
@@ -143,12 +143,14 @@ export default {
               await fb.database().ref("ads").child(id).update({ title, desc })
               commit('updateAd',{ title, desc, id})
               commit('setLoading', false)
+    
             } catch (error) {
               commit('setError', error.message)
               commit('setLoading', false)
               throw error
             }
         }
+    
     },   
 	getters: {
 		ads(state) {
@@ -159,15 +161,13 @@ export default {
 				return ad.promo
 			})
 		},
-    myAds(state, getters) {
-      return state.ads.filter(ad => {
-          return ad.OwnerId == getters.user.id
-      })
-    },
-    adById(state) {
-       return id => {
-       return state.ads.find(ad => ad.id == id)
-       }
-    },           
-  }
+		myAds(state) {
+			return state.ads
+        },
+        adById(state) {
+            return id => {
+            return state.ads.find(ad => ad.id == id)
+            }
+        }        
+}
 }
