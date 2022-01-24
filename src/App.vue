@@ -19,15 +19,25 @@
           <v-list-item
           v-for="link in links"
           :key="link.title"
-          :to="link.url"
-          >
+          :to="link.url">
             <v-list-item-icon>
               <v-icon>{{ link.icon }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ link.title }}</v-list-item-title>
             </v-list-item-content>
-          </v-list-item>
+            </v-list-item>
+                <v-list-item
+                @click="onLogout"
+                v-if="isUserLoggedIn"
+                >
+                <v-list-item-icon>
+                <v-icon>mdi-exit-to-app</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                <v-list-item-title>Logout</v-list-item-title>
+                </v-list-item-content>
+                </v-list-item>
         </v-list-item-group>
       </v-list>
     
@@ -49,6 +59,15 @@
  :key="link.title"
  :to="link.url" 	
  text><v-icon left>{{ link.icon }}</v-icon>{{ link.title }}</v-btn>
+ <v-btn
+       text
+       @click="onLogout"
+          v-if="isUserLoggedIn"
+       >
+       <v-icon left>mdi-exit-to-app</v-icon>
+         Logout
+       </v-btn>
+
     </v-toolbar-items>
   </v-app-bar>
   <v-main>
@@ -79,6 +98,10 @@ export default {
   methods: {
     closeError () {
       this.$store.dispatch('clearError')
+    },
+        onLogout () {
+      this.$store.dispatch('logoutUser')
+  this.$router.push("/")
     }
  },
  computed: {
