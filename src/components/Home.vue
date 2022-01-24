@@ -59,7 +59,10 @@ computed:  {
 	},
 	ads() {
 		return this.$store.getters.ads
-	}
+	},
+    loading(){
+        return this.$store.getters.loading
+    }
 }
 }
 </script>
