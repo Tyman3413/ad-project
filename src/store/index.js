@@ -7,9 +7,9 @@ import shared from './shared'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: {
-    ads,
-    user,
-    shared
-  }
+	modules: {
+		ads,
+		user,
+		shared
+	}
 })

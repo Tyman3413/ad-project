@@ -24,13 +24,14 @@ new Vue({
     appId: "1:127600040099:web:7eba278180a4b18dc64716",
     measurementId: "G-GXVLCVZ3TB"
   };
-  // Initialize Firebase
-  fb.initializeApp(firebaseConfig);
-  fb.auth().onAuthStateChanged(user => {
-    if (user) {
-      this.$store.dispatch('autoLoginUser', user)
-    }
-
-  })
+// Initialize Firebase
+fb.initializeApp(firebaseConfig);
+fb.analytics()
+fb.auth().onAuthStateChanged(user => {
+  if (user) {
+    this.$store.dispatch('autoLoginUser', user)
+  }
+})
+this.$store.dispatch('fetchAds')
 }
 }).$mount('#app')
